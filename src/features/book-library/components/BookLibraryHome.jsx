@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import BookLibraryNavbar from "./BookLibraryNavbar";
 import { BookCard } from "./BookCard";
-import { useBooks } from "../context/BookContext";
+import { useBooks } from "../hooks/BookContext";
 import { Dialog } from "primereact/dialog";
 
-const BookLibraryHome = ({ showMessage }) => {
+const BookLibraryHome = () => {
   const { bookList } = useBooks(); // se hace el import en main.jsx
   const [openModal, setOpenModal] = useState(false);
   const [currentBookModal, setCurrentBookModal] = useState({});

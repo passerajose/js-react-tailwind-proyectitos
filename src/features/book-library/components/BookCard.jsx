@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 export const BookCard = ({ book, setOpenModal, setCurrentBookModal }) => {
   const handleClick = () => {
