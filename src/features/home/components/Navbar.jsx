@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { MdHome, MdOutlineEmojiEmotions } from "react-icons/md";
 import { FaBookBible, FaClock } from "react-icons/fa6";
 import { SiAccuweather } from "react-icons/si";
+import { RiSearchFill } from "react-icons/ri";
 
 const Navbar = () => {
   return (
@@ -26,6 +27,10 @@ const Navbar = () => {
       <div className="flex items-center gap-2">
         <FaBookBible size={19} />
         <Link to="/book-library">Book Library</Link>
+      </div>
+      <div className="flex items-center gap-2">
+        <RiSearchFill size={22} />
+        <Link to="/search-box-filter">Search Box Filter</Link>
       </div>
     </div>
   );

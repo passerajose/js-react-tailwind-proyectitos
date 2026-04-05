@@ -11,6 +11,7 @@ import BookLibraryCreate from "../../features/book-library/components/BookLibrar
 import EmojiSelector from "../../features/emoji-selector/components/EmojiSelector.jsx";
 import Weather from "../../features/weather/components/Weather.jsx";
 import { BookProvider } from "../../features/book-library/hooks/BookContext.jsx";
+import SearchBoxFilter from "../../features/search-box-filter/components/SearchBoxFilter.jsx";
 
 function AppRouter() {
     // Para mensajes Toast
@@ -54,6 +55,7 @@ function AppRouter() {
           path="/book-library/create"
           element={<BookLibraryCreate showMessage={showMessage} />}
         />
+        <Route path="/search-box-filter" element={<SearchBoxFilter showMessage={showMessage}/>}/>
       </Routes>
       </BookProvider>
     </BrowserRouter>
