@@ -1,7 +1,7 @@
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import React, { useEffect, useRef, useState } from "react";
-import getWeather from "../scripts/weatherApi";
+import getWeather from "../services/weatherApi";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -10,6 +10,29 @@ const Weather = ({ showMessage }) => {
   const [currentCity, setCurrentCity] = useState(null);
   const mapRef = useRef(null);
   const markerRef = useRef(null); // Para mover el marcador sin recrear todo
+
+  // Función para mover el mapa y el marcador
+  const updateMap = (data) => {
+    const { lat, lon } = data.coord;
+
+    setCurrentCity(data);
+
+    if (mapRef.current) {
+      // Centrar mapa
+      mapRef.current.setView([lat, lon], 14);
+
+      // Si ya hay un marcador, quitarlo
+      if (markerRef.current) {
+        markerRef.current.remove();
+      }
+
+      // Crear nuevo marcador y guardarlo en ref
+      markerRef.current = L.marker([lat, lon])
+        .addTo(mapRef.current)
+        .bindPopup(data.name || cityName)
+        .openPopup();
+    }
+  };
 
   // Inicialización única del mapa
   useEffect(() => {
@@ -39,29 +62,6 @@ const Weather = ({ showMessage }) => {
       }
     };
   }, []);
-
-  // Función para mover el mapa y el marcador
-  const updateMap = (data) => {
-    const { lat, lon } = data.coord;
-
-    setCurrentCity(data);
-
-    if (mapRef.current) {
-      // Centrar mapa
-      mapRef.current.setView([lat, lon], 14);
-
-      // Si ya hay un marcador, quitarlo
-      if (markerRef.current) {
-        markerRef.current.remove();
-      }
-
-      // Crear nuevo marcador y guardarlo en ref
-      markerRef.current = L.marker([lat, lon])
-        .addTo(mapRef.current)
-        .bindPopup(data.name || cityName)
-        .openPopup();
-    }
-  };
 
   async function handleConfirm() {
     if (!cityName) {
