@@ -13,6 +13,8 @@ import Weather from "../../features/weather/components/Weather.jsx";
 import { BookProvider } from "../../features/book-library/hooks/BookContext.jsx";
 import SearchBoxFilter from "../../features/search-box-filter/components/SearchBoxFilter.jsx";
 import ModalHome from "../../features/modal-dialog/ModalHome.jsx";
+import { NativeModal } from "../../features/native-modal/components/NativeModal.jsx";
+import { NativeModalHome } from "../../features/native-modal/components/NativeModalHome.jsx";
 
 function AppRouter() {
   // Para mensajes Toast
@@ -63,6 +65,10 @@ function AppRouter() {
           <Route
             path="/modal-dialog"
             element={<ModalHome showMessage={showMessage} />}
+          />
+          <Route
+            path="/native-modal"
+            element={<NativeModalHome showMessage={showMessage} />}
           />
         </Routes>
       </BookProvider>
