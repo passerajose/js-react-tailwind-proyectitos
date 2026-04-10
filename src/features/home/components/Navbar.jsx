@@ -52,6 +52,11 @@ const Navbar = () => {
           <SiDialogflow size={22} /> Modal Dialog
         </Link>
       </div>
+      <div className="flex items-center gap-2">
+        <Link className="flex flex-row items-center gap-2" to="/native-modal">
+          <SiDialogflow size={22} /> Native Modal
+        </Link>
+      </div>
     </div>
   );
 };
