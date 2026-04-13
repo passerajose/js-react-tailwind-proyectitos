@@ -5,6 +5,7 @@ import { FaBookBible, FaClock } from "react-icons/fa6";
 import { SiAccuweather } from "react-icons/si";
 import { RiSearchFill } from "react-icons/ri";
 import { SiDialogflow } from "react-icons/si";
+import { FaLink } from "react-icons/fa6";
 
 const Navbar = () => {
   return (
@@ -55,6 +56,11 @@ const Navbar = () => {
       <div className="flex items-center gap-2">
         <Link className="flex flex-row items-center gap-2" to="/native-modal">
           <SiDialogflow size={22} /> Native Modal
+        </Link>
+      </div>
+      <div className="flex items-center gap-2">
+        <Link className="flex flex-row items-center gap-2" to="/acortador-url">
+          <FaLink size={22} /> Native Modal
         </Link>
       </div>
     </div>
