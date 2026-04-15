@@ -16,6 +16,7 @@ import ModalHome from "../../features/modal-dialog/ModalHome.jsx";
 import { NativeModal } from "../../features/native-modal/components/NativeModal.jsx";
 import { NativeModalHome } from "../../features/native-modal/components/NativeModalHome.jsx";
 import { AcortadorUrl } from "../../features/acortador-url/components/AcortadorUrl.jsx";
+import { RedirectUrl } from "../../features/acortador-url/components/RedirectUrl.jsx";
 
 function AppRouter() {
   // Para mensajes Toast
@@ -35,6 +36,10 @@ function AppRouter() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
+          <Route
+            path="/acortador-url/:id/:code"
+            element={<RedirectUrl showMessage={showMessage} />}
+          />
           <Route element={<MainLayout />}>
             <Route
               path="/pomodoro"

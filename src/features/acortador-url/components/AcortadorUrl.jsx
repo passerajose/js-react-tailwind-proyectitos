@@ -20,19 +20,30 @@ export const AcortadorUrl = ({ showMessage }) => {
     (state, action) => {
       switch (action.type) {
         case "ADD":
+          console.log(action);
+          const newId = crypto.randomUUID();
+          // Asegurarnos de que tenga http la url pasada
+          const rawUrl = action.data.toString();
+          const fullUrl = rawUrl.startsWith("http")
+            ? rawUrl
+            : "https://" + rawUrl;
           return [
             ...state,
             {
-              id: crypto.randomUUID(),
-              url: action.data.toString(),
-              shortUrl: getrandom(),
-              view: 0,
+              id: newId,
+              url: fullUrl,
+              shortUrl:
+                "http://localhost:5173/acortador-url/" +
+                String(newId) +
+                "/" +
+                getrandom(),
+              views: 0,
             },
           ];
         case "DELETE_BY_ID":
           return state.filter((u) => u.id !== action.id); // filter devuelve un array -> si pongo [] el resultado final quedaría [[]]
         default:
-          break;
+          return state;
       }
     },
     null,
@@ -44,7 +55,7 @@ export const AcortadorUrl = ({ showMessage }) => {
     console.log(urlList);
   }, [urlList]);
 
-  const handleClick = () => {
+  const handleClick = (u) => {
     if (!inputValue) {
       return showMessage("error", "Campo vacío", "Ingrese una URL antes");
     }
@@ -58,7 +69,7 @@ export const AcortadorUrl = ({ showMessage }) => {
 
   return (
     <div className="h-full w-full bg-gray-100 align-center flex items-center justify-center">
-      <div className="w-1/3 h-1/2 border rounded-lg p-5 flex flex-col gap-3 bg-white">
+      <div className="w-3/7 h-3/4 border rounded-lg p-5 flex flex-col gap-3 bg-white">
         <div className="flex flex-row gap-2">
           <input
             type="text"
@@ -84,17 +95,27 @@ export const AcortadorUrl = ({ showMessage }) => {
             ) => (
               <div
                 key={u.id}
-                className="flex flex-row gap-5 rounded-lg hover:bg-gray-100 p-3 mr-3"
+                className="flex flex-row gap-1 rounded-lg hover:bg-gray-100 p-3 mr-3"
               >
-                <div className="flex flex-col text-gray-400">
-                  <p>URL:</p>
-                  <p>Short URL:</p>
-                  <p>Views:</p>
-                </div>
-                <div className="flex-1 flex-col">
-                  <p>{u.url}</p>
-                  <p>{u.urlShort}</p>
-                  <p onClick={(u) => handleClickViews(u)}>{u.views}</p>
+                <div className="flex flex-col">
+                  <div className="grid grid-cols-[18%_82%] text-gray-400">
+                    <p>URL:</p>
+                    <p>{u.url}</p>
+                  </div>
+                  <div className="grid grid-cols-[18%_82%] text-gray-400">
+                    <p>Short URL:</p>
+                    <Link
+                      to={u.shortUrl}
+                      onClick={handleClickViews}
+                      className="hover:underline"
+                    >
+                      {u.shortUrl}
+                    </Link>
+                  </div>
+                  <div className="grid grid-cols-[18%_82%] text-gray-400">
+                    <p>Views:</p>
+                    <p>{u.views}</p>
+                  </div>
                 </div>
                 <div>
                   <button
