@@ -15,6 +15,8 @@ import SearchBoxFilter from "../../features/search-box-filter/components/SearchB
 import ModalHome from "../../features/modal-dialog/ModalHome.jsx";
 import { NativeModal } from "../../features/native-modal/components/NativeModal.jsx";
 import { NativeModalHome } from "../../features/native-modal/components/NativeModalHome.jsx";
+import { AcortadorUrl } from "../../features/acortador-url/components/AcortadorUrl.jsx";
+import { RedirectUrl } from "../../features/acortador-url/components/RedirectUrl.jsx";
 
 function AppRouter() {
   // Para mensajes Toast
@@ -31,45 +33,55 @@ function AppRouter() {
     <BrowserRouter>
       <BookProvider>
         <Toast ref={toast} />
-        <Routes element={<MainLayout />}>
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route
-            path="/pomodoro"
-            element={<Pomodoro showMessage={showMessage} />}
+            path="/acortador-url/:id/:code"
+            element={<RedirectUrl showMessage={showMessage} />}
           />
-          <Route
-            path="/weather"
-            element={<Weather showMessage={showMessage} />}
-          />
-          <Route
-            path="/emoji-selector"
-            element={<EmojiSelector showMessage={showMessage} />}
-          />
-          <Route
-            path={"/book-library"}
-            element={<BookLibraryHome showMessage={showMessage} />}
-          />
-          <Route
-            path="/book-library/home"
-            element={<BookLibraryHome showMessage={showMessage} />}
-          />
-          <Route
-            path="/book-library/create"
-            element={<BookLibraryCreate showMessage={showMessage} />}
-          />
-          <Route
-            path="/search-box-filter"
-            element={<SearchBoxFilter showMessage={showMessage} />}
-          />
-          <Route
-            path="/modal-dialog"
-            element={<ModalHome showMessage={showMessage} />}
-          />
-          <Route
-            path="/native-modal"
-            element={<NativeModalHome showMessage={showMessage} />}
-          />
+          <Route element={<MainLayout />}>
+            <Route
+              path="/pomodoro"
+              element={<Pomodoro showMessage={showMessage} />}
+            />
+            <Route
+              path="/weather"
+              element={<Weather showMessage={showMessage} />}
+            />
+            <Route
+              path="/emoji-selector"
+              element={<EmojiSelector showMessage={showMessage} />}
+            />
+            <Route
+              path={"/book-library"}
+              element={<BookLibraryHome showMessage={showMessage} />}
+            />
+            <Route
+              path="/book-library/home"
+              element={<BookLibraryHome showMessage={showMessage} />}
+            />
+            <Route
+              path="/book-library/create"
+              element={<BookLibraryCreate showMessage={showMessage} />}
+            />
+            <Route
+              path="/search-box-filter"
+              element={<SearchBoxFilter showMessage={showMessage} />}
+            />
+            <Route
+              path="/modal-dialog"
+              element={<ModalHome showMessage={showMessage} />}
+            />
+            <Route
+              path="/native-modal"
+              element={<NativeModalHome showMessage={showMessage} />}
+            />
+            <Route
+              path="/acortador-url"
+              element={<AcortadorUrl showMessage={showMessage} />}
+            />
+          </Route>
         </Routes>
       </BookProvider>
     </BrowserRouter>
