@@ -17,6 +17,7 @@ import { NativeModal } from "../../features/native-modal/components/NativeModal.
 import { NativeModalHome } from "../../features/native-modal/components/NativeModalHome.jsx";
 import { AcortadorUrl } from "../../features/acortador-url/components/AcortadorUrl.jsx";
 import { RedirectUrl } from "../../features/acortador-url/components/RedirectUrl.jsx";
+import Calculadora from "../../features/calculadora/components/Calculadora.jsx";
 
 function AppRouter() {
   // Para mensajes Toast
@@ -81,6 +82,10 @@ function AppRouter() {
               path="/acortador-url"
               element={<AcortadorUrl showMessage={showMessage} />}
             />
+            <Route
+              path="/calculadora"
+              element={<Calculadora showMessage={showMessage} />}
+            ></Route>
           </Route>
         </Routes>
       </BookProvider>
